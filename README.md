@@ -1,5 +1,9 @@
 # reference-impl
 
+[![CI](https://github.com/certifieddata/reference-impl/actions/workflows/ci.yml/badge.svg)](https://github.com/certifieddata/reference-impl/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Use this template](https://img.shields.io/badge/use%20this-template-181717?logo=github)](https://github.com/certifieddata/reference-impl/generate)
+
 > Reference implementation: a high-risk AI system logging EU AI Act Article 12 evidence with CertifiedData.io's Decision Ledger.
 
 A ~30-line credit-scoring service that:
