@@ -29,6 +29,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: certifieddata/verify
+          # Match the branch name on the verify repo for PR builds; fall back
+          # to main on push-to-main builds (post-merge state).
+          ref: ${{ github.head_ref || 'main' }}
           path: verify
       - uses: actions/setup-node@v4
         with:
