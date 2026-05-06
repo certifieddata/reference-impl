@@ -1,0 +1,3 @@
+{"decision_id":"d_demo_001","input":{"income":80000,"debt":20000},"output":{"approved":true,"score":0.6}}
+{"decision_id":"d_demo_002","input":{"income":30000,"debt":25000},"output":{"approved":false,"score":0.05}}
+{"decision_id":"d_demo_003","input":{"income":100000,"debt":5000},"output":{"approved":true,"score":0.95}}

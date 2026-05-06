@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      # Until @certifieddata/verify is published to npm, this repo depends on
+      # it via `file:../verify`, so CI checks out both repositories as siblings.
+      # After the first publish, drop the verify checkout and switch this repo's
+      # dependency to a published version range.
+      - uses: actions/checkout@v4
+        with:
+          path: reference-impl
+      - uses: actions/checkout@v4
+        with:
+          repository: certifieddata/verify
+          path: verify
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Build verify
+        working-directory: verify
+        run: |
+          npm install
+          npm run build
+      - name: Install reference-impl
+        working-directory: reference-impl
+        run: npm install
+      - name: Typecheck
+        working-directory: reference-impl
+        run: npm run typecheck
+      - name: Test
+        working-directory: reference-impl
+        run: npm test
