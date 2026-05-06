@@ -1,0 +1,12 @@
+{
+  "issuer": "CertifiedData.io",
+  "keys": [
+    {
+      "key_id": "ck_2026_credit_training",
+      "public_key": "qpbUlDzhp6mmz0gnjNIi4aYVXlpzNH/jeuIA3H0DBy4=",
+      "algorithm": "ed25519",
+      "created_at": "2026-01-01T00:00:00Z",
+      "label": "credit-training-fixture"
+    }
+  ]
+}

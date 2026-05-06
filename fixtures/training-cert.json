@@ -1,0 +1,16 @@
+{
+  "certification_id": "ce_2026_credit_model_v3",
+  "timestamp": "2026-01-15T12:00:00Z",
+  "issuer": "CertifiedData.io",
+  "dataset_hash": "sha256:4fcf1cd4278f0dac052979595c25cb8a76668d89e02e2e697c0c629f36a75dd3",
+  "algorithm": "DP-CTGAN",
+  "rows": 5,
+  "columns": 3,
+  "schema_version": "cert.v1",
+  "key_id": "ck_2026_credit_training",
+  "metadata": {
+    "epsilon": 1,
+    "description": "synthetic credit training data, DP-CTGAN ε=1.0"
+  },
+  "signature": "oRDoNlOVGiQfHIljECVFxQewuIlmJpoQO2QVltAF6nzx9ARBS92xW+/yZwN/0fKJhlNleWXsm3XG3BD1FeIyAg=="
+}

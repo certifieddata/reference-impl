@@ -1,0 +1,46 @@
+services:
+  reference-impl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: certifieddata/reference-impl:latest
+    ports:
+      - "3000:3000"
+    environment:
+      TRAINING_CERT: /app/fixtures/training-cert.json
+      TRAINING_KEYS: /app/fixtures/keys.json
+      MODEL_VERSION: credit-v3.2.1
+      # LEDGER_URL: http://ledger:8080  # uncomment to use the HTTP ledger below
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ledger
+      POSTGRES_PASSWORD: ledger
+      POSTGRES_DB: ledger
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ledger"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - ledger-data:/var/lib/postgresql/data
+
+  # Stub for a future production Decision Ledger service.
+  # Uncomment when wiring up against a real ledger backend:
+  #
+  # ledger:
+  #   image: certifieddata/ledger:latest
+  #   environment:
+  #     POSTGRES_URL: postgres://ledger:ledger@postgres:5432/ledger
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   ports:
+  #     - "8080:8080"
+
+volumes:
+  ledger-data:
